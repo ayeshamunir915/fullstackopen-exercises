@@ -4,6 +4,10 @@ const mostVotes({anecdotes, setVotes}) => {
 
 }
 
+const addButtonClick({setVotes}) => {
+  setVotes(setVotes).concat(<Button key={setVotes.length}/>)
+};
+
 const App = () => {
   const anecdotes = [
     'If it hurts, do it more often',
@@ -16,7 +20,7 @@ const App = () => {
   ]
    
   const [selected, setSelected] = useState(0)
-  const points = [ 0, 0, 0, 0 ]
+  const points = [ 0, 0, 0, 0, 0, 0, 0 ]
   const [votes, setVotes] = useState(points)
 
   return (
@@ -26,8 +30,8 @@ const App = () => {
       <br></br>
       has {votes} votes
       <br></br>
-      <button handleClick={() => setVotes(votes + 1)}>Vote</button>
-      <button onClick={() => setSelected(selected + 1)}>Next anecdotes</button>
+      <button handleClick={() => setVotes(votes + 1)} onClick={onAddButtonClick}>Vote</button>
+      <button handleClick={() => setSelected(selected + 1)}>Next anecdotes</button>
       <h1>Anecdote with the most votes</h1>
       {anecdotes[selected]}<br></br>
       has {votes} votes
