@@ -12,20 +12,21 @@ const App = () => {
   ]
    
   const [selected, setSelected] = useState(0)
-
-  const points = [0, 0, 0, 0, 0, 0, 0]
-  const point = [...points]
-  // increment the value in position 2 by one
-  point[2] += 1   
+  const points = [ 0, 0, 0, 0 ]
+  const [votes, setVotes] = useState(points)
 
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       {anecdotes[selected]}
       <br></br>
-      has {point} votes
+      has {votes} votes
       <br></br>
-      <button>Vote</button>
+      <button handleClick={() => setVotes(votes + 1)}>Vote</button>
       <button onClick={() => setSelected(selected + 1)}>Next anecdotes</button>
+      <h1>Anecdote with the most votes</h1>
+      {anecdotes[selected]}<br></br>
+      has {votes} votes
     </div>
   )
 }
