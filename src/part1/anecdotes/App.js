@@ -1,8 +1,12 @@
 import { useState } from 'react'
 
-const addButtonClick({setVotes}) => {
-  setVotes(setVotes).concat(<Button key={setVotes.length}/>)
-};
+const buttonVotes = () => {
+  const setVotes = { 
+    ...votes, 
+    left: votes + 1 
+  }
+  setVotes(totalVotes)
+}
 
 const App = () => {
   const anecdotes = [
