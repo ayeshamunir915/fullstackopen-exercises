@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const buttonVotes = () => {
+const totalVotes = () => {
   const setVotes = { 
     ...votes, 
     left: votes + 1 
@@ -33,7 +33,8 @@ const App = () => {
       <button handleClick={() => setVotes(votes + 1)} onClick={onAddButtonClick}>Vote</button>
       <button handleClick={() => setSelected(selected + 1)}>Next anecdotes</button>
       <h1>Anecdote with the most votes</h1>
-      {anecdotes[selected]}<br></br>
+      /*{anecdotes[selected]}<br></br>*/
+      {anecdotes[totalVotes]}<br></br>
       has {votes} votes
     </div>
   )

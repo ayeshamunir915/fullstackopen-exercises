@@ -34,7 +34,7 @@ const handleNewNameChange = (event) => {
       <form>
         <div>name: <input /></div>
         <div>number: <input /></div>
-        <div><button type="submit" onSubmit={addName} onChange={handleNewNameChange}>add</button></div>
+        <div><button type="submit" onSubmit={addName}>add</button></div>
       </form>
       <h3>Numbers</h3>
       console.log({newName} + {newNumber})

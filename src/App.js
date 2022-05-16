@@ -1,40 +1,48 @@
 import { useState } from 'react'
 
-const mostVotes({anecdotes, setVotes}) => {
-
-}
-
-const addButtonClick({setVotes}) => {
-  setVotes(setVotes).concat(<Button key={setVotes.length}/>)
-};
-
 const App = () => {
-  const anecdotes = [
-    'If it hurts, do it more often',
-    'Adding manpower to a late software project makes it later!',
-    'The first 90 percent of the code accounts for the first 10 percent of the development time...The remaining 10 percent of the code accounts for the other 90 percent of the development time.',
-    'Any fool can write code that a computer can understand. Good programmers write code that humans can understand.',
-    'Premature optimization is the root of all evil.',
-    'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.',
-    'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients'
-  ]
-   
-  const [selected, setSelected] = useState(0)
-  const points = [ 0, 0, 0, 0, 0, 0, 0 ]
-  const [votes, setVotes] = useState(points)
+  //2.9
+  const [persons, setPersons] = useState([
+    { name: 'Arto Hellas', number: '040-123456', id: 1 },
+    { name: 'Ada Lovelace', number: '39-44-5323523', id: 2 },
+    { name: 'Dan Abramov', number: '12-43-234345', id: 3 },
+    { name: 'Mary Poppendieck', number: '39-23-6423122', id: 4 }
+  ])
+  const [newName, setNewName] = useState('')
+  const [newNumber, setNewNumber] = useState('')
+
+  const addName = (event) => {
+    event.preventDefault()
+    const nameObject = {
+      content: newName,
+    }
+    setPersons(persons.concat(nameObject))
+    //Part 2.7 is the alert supposed to be like this?
+    window.alert({newName} + ' is already added to phonebook');
+  }
+
+const handleNewNameChange = (event) => {
+  console.log(event.target.value)
+  setNewName(event.target.value)
+}
 
   return (
     <div>
-      <h1>Anecdote of the day</h1>
-      {anecdotes[selected]}
-      <br></br>
-      has {votes} votes
-      <br></br>
-      <button handleClick={() => setVotes(votes + 1)} onClick={onAddButtonClick}>Vote</button>
-      <button handleClick={() => setSelected(selected + 1)}>Next anecdotes</button>
-      <h1>Anecdote with the most votes</h1>
-      {anecdotes[selected]}<br></br>
-      has {votes} votes
+      <h2>Phonebook</h2>
+      // part 2.8
+      /*<div> name: <input /></div>
+      <div> number: <input /></div>*/
+
+      // part 2.9
+      <div> filter shown with: <input /></div>
+      <h3>add a new</h3>
+      <form>
+        <div>name: <input /></div>
+        <div>number: <input /></div>
+        <div><button type="submit" onSubmit={addName}>add</button></div>
+      </form>
+      <h2>Numbers</h2>
+      console.log({newName} + {newNumber})
     </div>
   )
 }
