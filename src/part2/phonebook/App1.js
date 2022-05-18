@@ -47,8 +47,10 @@ const App = () => {
       <h2>Numbers</h2>
       {/* <div>debug: {newName}</div> */}
       <div>
-      {persons.map(person => 
-          <Phonebook key={persons.newName} person={person} />
+        {persons.map(person =>
+         <persons key={persons.newName}>
+           {person.newName}
+         </persons>
         )}
       </div>
     </div>
