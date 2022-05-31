@@ -1,647 +1,91 @@
-// // 2.6
-// import { useState } from 'react'
-
-// const Persons = ({persons}) => {
-//   return (
-//     persons.map(person => {
-//       return (
-//       <div key={person.name}>
-//         {person.name}
-//       </div>
-//       )
-//     })
-//   )
-// }
-
-// const App = () => {
-//   const [persons, setPersons] = useState([
-//     { name: 'Arto Hellas' }
-//   ]) 
-//   const [newName, setNewName] = useState('')
-
-//   const handleNameChange = (event) => {
-//     console.log(event.target.value)
-//     setNewName(event.target.value)
-//   }
-
-//   const addName = (event) => {
-//     event.preventDefault()
-//     const nameObject = {
-//       name: newName,
-//     }
-  
-//     setPersons(persons.concat(nameObject))
-//     setNewName('')
-//     return
-//   }
-
+// // 2.1
+// const Header = ({course}) => {
 //   return (
 //     <div>
-//       <h2>Phonebook</h2>
-//       <form onSubmit={addName}>
-//         <div>
-//           name: <input value={newName} onChange={handleNameChange}/>
-//         </div>
-//         <div>
-//           <button type="submit">add</button>
-//         </div>
-//       </form>
-//       <h2>Numbers</h2>
-//      <Persons persons={persons} />
+//       <h1>{course.name}</h1>
 //     </div>
 //   )
 // }
 
-// export default App
-
-// // 2.7
-// import { useState } from 'react'
-
-// const Persons = ({persons}) => {
-//   return (
-//     persons.map(persons => {
-//       return (
-//       <div key={persons.name}>
-//         {persons.name}
-//       </div>
-//       )
-//     })
-//   )
-// }
-
-// const App = () => {
-//   const [persons, setPersons] = useState([
-//     { name: 'Arto Hellas' }
-//   ]) 
-//   const [newName, setNewName] = useState('')
-//   const [newPhone, setNewPhone] = useState('')
-
-//   const handleNameChange = (event) => {
-//     console.log(event.target.value)
-//     setNewName(event.target.value)
-//   }
-
-//   const addName = (event) => {
-//     event.preventDefault()
-//     const nameObject = {
-//       name: newName,
-//     }
-//     const currentName = persons.find(persons => persons.name === newName)
-//     if (currentName) {
-//       (window.alert(`${newName} is already added to phonebook`))
-//     }
-//     setPersons(persons.concat(nameObject))
-//     setNewName('')
-//     return
-//   }
-
+// const Part = (props) => {
 //   return (
 //     <div>
-//       <h2>Phonebook</h2>
-//       <form onSubmit={addName}>
-//         <div>
-//           name: <input value={newName} onChange={handleNameChange}/>
-//         </div>
-//         <div>
-//           <button type="submit">add</button>
-//         </div>
-//       </form>
-//       <h2>Numbers</h2>
-//      <Persons persons={persons} addNewName={addName}/>
+//     <p>{props.part.name} {props.part.exercises}</p>
 //     </div>
 //   )
 // }
 
-// export default App
-
-// // 2.8
-// import { useState } from 'react'
-
-// const Persons = ({persons}) => {
+// const Content = ({course}) => {
 //   return (
-//     persons.map(person => {
-//       return (
-//       <div key={person.name}>
-//         {person.name}
-//       </div>
-//       )
-//     })
+//   <div>
+//     {course.parts.map(part => 
+//       <Part key={part.id} part={part} />
+//     )}
+//   </div>
 //   )
 // }
 
-// const App = () => {
-//   const [persons, setPersons] = useState([
-//     { name: 'Arto Hellas' }
-//   ]) 
-//   const [newName, setNewName] = useState('')
-//   const [newPhone, setNewPhone] = useState('')
-
-//   const handleNameChange = (event) => {
-//     console.log(event.target.value)
-//     setNewName(event.target.value)
-//   }
-
-//   const addName = (event) => {
-//     event.preventDefault()
-//     const nameObject = {
-//       name: newName,
-//     }
-//     setPersons(persons.concat(nameObject))
-//     setNewName('')
-//     return
-//   }
-
-//   const addNewName = (event) => {
-//     event.preventDefault()
-//     const existingPerson = persons.find(persons => persons.name === newName)
-//     if (existingPerson) {
-//       (window.confirm(`${newName} is already added to phonebook`))
-//     }
-//   }
-
-//   const handleNumberChange = (event) => {
-//     console.log(event.target.value)
-//     setNewPhone(event.target.value)
-//   }
-
-//   const addPhone = (event) => {
-//     event.preventDefault()
-//     const phoneObject = {
-//       phone: newPhone,
-//     }
-//     setPersons(persons.concat(phoneObject))
-//     setNewPhone('')
-//     return
-//   }
-
+// const Course = ({course}) => {
 //   return (
 //     <div>
-//       <h2>Phonebook</h2>
-//       <form onSubmit={addName}>
-//         <div>
-//           name: <input value={newName} onChange={handleNameChange}/>
-//         </div>
-//         <div>
-//           name: <input value={addPhone} onChange={handleNumberChange}/>
-//         </div>
-//         <div>
-//           <button type="submit">add</button>
-//         </div>
-//       </form>
-//       <h2>Numbers</h2>
-//      <Persons persons={persons} addNewName={addNewName}/>
+//       <Header course={course} />
+//       <Content course={course} />
 //     </div>
 //   )
 // }
 
-// export default App
+// export default Course
 
-// // 2.9
-// import { useState } from 'react'
-
-// const Persons = ({persons}) => {
-//   return (
-//     persons.map(person => {
-//       return (
-//       <div key={person.name}>
-//         {person.name}
-//       </div>
-//       )
-//     })
-//   )
-// }
-
-// const Filter = ({ onFilter }) => {
-//   return (
-//     <div>
-//       filter shown with <input onChange={onFilter} />
-//     </div>
-//   );
-// };
-
-// const App = () => {
-//   const [persons, setPersons] = useState([
-//     { name: 'Arto Hellas' }
-//   ]) 
-//   const [newName, setNewName] = useState('')
-//   const [newPhone, setNewPhone] = useState('')
-
-//   const handleNameChange = (event) => {
-//     console.log(event.target.value)
-//     setNewName(event.target.value)
-//   }
-
-//   const addName = (event) => {
-//     event.preventDefault()
-//     const nameObject = {
-//       name: newName,
-//     }
-//     setPersons(persons.concat(nameObject))
-//     setNewName('')
-//     return
-//   }
-
-//   const addNewName = (event) => {
-//     event.preventDefault()
-//     const existingPerson = persons.find(persons => persons.name === newName)
-//     if (existingPerson) {
-//       (window.confirm(`${newName} is already added to phonebook`))
-//     }
-//   }
-
-//   const handleNumberChange = (event) => {
-//     console.log(event.target.value)
-//     setNewPhone(event.target.value)
-//   }
-
-//   const addPhone = (event) => {
-//     event.preventDefault()
-//     const phoneObject = {
-//       phone: newPhone,
-//     }
-//     setPersons(persons.concat(phoneObject))
-//     setNewPhone('')
-//     return
-//   }
-
-//   return (
-//     <div>
-//       <h2>Phonebook</h2>
-//       <form onSubmit={addName}>
-//       <Filter onFilter={Filter}/>
-//       <h2>Add a new</h2>
-//         <div>
-//           name: <input value={newName} onChange={handleNameChange}/>
-//         </div>
-//         <div>
-//           name: <input value={newPhone} onChange={handleNumberChange}/>
-//         </div>
-//         <div>
-//           <button type="submit">add</button>
-//         </div>
-//       </form>
-//       <h2>Numbers</h2>
-//      <Persons persons={persons} addNewName={addNewName}/>
-//     </div>
-//   )
-// }
-
-// export default App
-
-// // 2.10
-// import { useState } from 'react'
-// import Persons from './components/Persons'
-// import PersonForm from './components/PersonForm'
-// import Filter from './components/Filter'
-
-// const App = () => {
-//   const [persons, setPersons] = useState([
-//     { name: 'Arto Hellas' }
-//   ]) 
-//   const [newName, setNewName] = useState('')
-//   const [newPhone, setNewPhone] = useState('')
-
-//   const handleNameChange = (event) => {
-//     console.log(event.target.value)
-//     setNewName(event.target.value)
-//   }
-
-//   const addName = (event) => {
-//     event.preventDefault()
-//     const nameObject = {
-//       name: newName,
-//     }
-//     setPersons(persons.concat(nameObject))
-//     setNewName('')
-//     return
-//   }
-
-//   const addNewName = (event) => {
-//     event.preventDefault()
-//     const existingPerson = persons.find(persons => persons.name === newName)
-//     if (existingPerson) {
-//       (window.confirm(`${newName} is already added to phonebook`))
-//     }
-//   }
-
-//   const handleNumberChange = (event) => {
-//     console.log(event.target.value)
-//     setNewPhone(event.target.value)
-//   }
-
-//   const addPhone = (event) => {
-//     event.preventDefault()
-//     const phoneObject = {
-//       phone: newPhone,
-//     }
-//     setNewPhone(persons.concat(phoneObject))
-//     setNewPhone('')
-//     return
-//   }
-
-//   return (
-//     <div>
-//       <h2>Phonebook</h2>
-//       <form onSubmit={addName}>
-//       <Filter onFilter={Filter}/>
-//       <h2>Add a new</h2>
-//       <PersonForm name={newName} phone={newPhone} />
-//       </form>
-//       <h2>Numbers</h2>
-//      <Persons persons={persons} addNewName={addNewName} addPhone={addPhone}/>
-//     </div>
-//   )
-// }
-
-// export default App
-
-// // 2.8
-// import { useState } from 'react'
-
-// const Persons = ({persons}) => {
-//   return (
-//     persons.map(person => {
-//       return (
-//       <div key={person.name.id}>
-//           name={person.name}
-//         </div>
-//       )
-//     })
-//   )
-// }
-
-// const Numbers = ({numbers}) => {
-//   console.dir(numbers)
-//   return (
-//     numbers.map(number => {
-//       return (
-//         <div key={number.number.id}>
-//           number={number.number}
-//         </div>
-//       )
-//     })
-//   )
-// }
-
-// // const NameNumbers = () => {
-// //   return(
-// //     <div>
-// //       <NameNumbers Persons={Persons} Numbers={Numbers}/>
-// //     </div>
-// //   )
-// // }
-
-// const App = () => {
-//   const [persons, setPersons] = useState([
-//     { name: 'Arto Hellas' }
-//   ]) 
-//   const [numbers, setNumbers] = useState([
-//     { number: '040-1234567' }
-//   ]) 
-//   const [newName, setNewName] = useState('')
-//   // const [phone, setPhone] = useState('')
-//   const [newNumber, setNewNumber] = useState('')
-
-//   const handleNameChange = (event) => {
-//     console.log(event.target.value)
-//     setNewName(event.target.value)
-//   }
-
-//   const handleNumberChange = (event) => {
-//     console.log(event.target.value)
-//     setNewNumber(event.target.value)
-//   }
-
-//   const addName = (event) => {
-//     event.preventDefault()
-//     const nameObject = {
-//       name: newName,
-//     }
-//     const currentName = persons.find(persons => persons.name === newName)
-//     if (currentName) {
-//       (window.alert(`${newName} is already added to phonebook`))
-//     }
-//     setPersons(persons.concat(nameObject))
-//     setNewName('')
-//   }
-
-//   const addNumber = (event) => {
-//     event.preventDefault()
-//     const numberObject = {
-//       number: newNumber,
-//     }
-//     setNumbers(numbers.concat(numberObject))
-//     setNewNumber('')
-//   }
-
-//   const addNameNumber = (event) => {
-//     addName(event)
-//     addNumber(event)
-//   }
-
-//   return (
-//     <div>
-//       <h2>Phonebook</h2>
-//       <form onSubmit={addNameNumber}>
-//         <div>
-//           name: <input value={newName} onChange={handleNameChange}/>
-//         </div>
-//         <div>
-//           number: <input value={newNumber} onChange={handleNumberChange}/>
-//         </div>        
-//         <div>
-//           <button type="submit">add</button>
-//         </div>
-//       </form>
-//       <h2>Numbers</h2>
-//      <Persons persons={persons} addNewName={addName} numbers={numbers} addNumber={addNumber}/>
-//      <Numbers numbers={numbers} addNumber={addNumber}/>
-//      {/* <NameNumbers addNewName={addName} addNumber={addNumber}/> */}
-//     </div>
-//   )
-// }
-
-// export default App
-
-// // 2.8
-// import { useState } from 'react'
-
-// const Persons = ({persons}) => {
-//   return (
-//     persons.map(persons => {
-//       return (
-//       <div key={persons.name}>
-//         {persons.name}
-//       </div>
-//       )
-//     })
-//   )
-// }
-
-// const App = () => {
-//   const [persons, setPersons] = useState([
-//     { name: 'Arto Hellas' }
-//   ]) 
-//   const [newName, setNewName] = useState('')
-//   const [newPhone, setNewPhone] = useState('')
-
-//   const handleNameChange = (event) => {
-//     console.log(event.target.value)
-//     setNewName(event.target.value)
-//   }
-
-//   const handlePhoneChange = (event) => {
-//     console.log(event.target.value)
-//     setNewPhone(event.target.value)
-//   }
-
-
-//   const addName = (event) => {
-//     event.preventDefault()
-//     const newPhonebookObject = {
-//       name: newName,
-//       phone: newPhone
-//     }
-//     const currentName = persons.find(persons => persons.name === newName)
-//     if (currentName) {
-//       (window.alert(`${newName} is already added to phonebook`))
-//     }
-//     setPersons(persons.concat(newPhonebookObject))
-//     setNewName('')
-//     newPhone(newPhone.concat(newPhonebookObject))
-//     setNewPhone('')
-//     return
-//   }
-
-//   const addPhone = (event) => {
-//     event.preventDefault()
-//     const phoneObject = {
-//       phone: newPhone,
-//     }
-//     newPhone(newPhone.concat(phoneObject))
-//     setNewPhone('')
-//     return
-//   }
-
-//   return (
-//     <div>
-//       <h2>Phonebook</h2>
-//       <form onSubmit={addName}>
-//         <div>
-//           name: <input value={newName} onChange={handleNameChange}/>
-//         </div>
-//         <div>
-//           number: <input value={newPhone} onChange={handlePhoneChange}/>
-//         </div>
-//         <div>
-//           <button type="submit">add</button>
-//         </div>
-//       </form>
-//       <h2>Numbers</h2>
-//      <Persons persons={persons} phone={newPhone} addNewName={addName}/>
-//     </div>
-//   )
-// }
-
-// export default App
-
-// 2.9
-import { useState } from 'react'
-
-const Persons = ({persons}) => {
-  return (
-    persons.map(persons => {
-      return (
-      <div key={persons.name}>
-        {persons.name}
+// 2.2 and 2.3
+const Header = ({course}) => {
+    return (
+      <div>
+        <h1>{course.name}</h1>
       </div>
-      )
-    })
-  )
-}
-
-const Filter = ({searchFilter, setSearchFilter}) => {
-  return (
+    )
+  }
+  
+  const Part = (props) => {
+    return (
+      <div>
+      <p>{props.part.name} {props.part.exercises}</p>
+      </div>
+    )
+  }
+  
+  const Content = ({course}) => {
+    return (
     <div>
-      Filter shown with <input value={searchFilter}/>
+      {course.parts.map(parts => 
+        <Part key={parts.id} part={parts} />
+      )}
     </div>
-  )
-}
-
-const App = () => {
-  const [persons, setPersons] = useState([
-    { name: 'Arto Hellas', number: '040-123456', id: 1 },
-    { name: 'Ada Lovelace', number: '39-44-5323523', id: 2 },
-    { name: 'Dan Abramov', number: '12-43-234345', id: 3 },
-    { name: 'Mary Poppendieck', number: '39-23-6423122', id: 4 }
-  ])
-  const [newName, setNewName] = useState('')
-  const [newPhone, setNewPhone] = useState('')
-  const [searchFilter, setSearchFilter] = useState('')
-
-
-  const handleNameChange = (event) => {
-    console.log(event.target.value)
-    setNewName(event.target.value)
+    )
   }
-
-  const handlePhoneChange = (event) => {
-    console.log(event.target.value)
-    setNewPhone(event.target.value)
+  
+  const Total = ({course}) => {
+    const sumExercises = course.parts.reduce((s, p) => {
+      console.log('what is happening', s, p)
+      return s+p.exercises
+    }, 0)
+    return(
+      <div>
+        <b>
+          Number of {sumExercises} exercises
+        </b>
+      </div>
+    )
   }
-
-  const handleFilterChange = (event) => {
-    console.log(event.target.value)
-    setSearchFilter(event.target.value)
+  
+  
+  const Course = ({course}) => {
+    return (
+      <div>
+        <Header course={course} />
+        <Content course={course} />
+        <Total course={course} />
+      </div>
+    )
   }
-
-  const addName = (event) => {
-    event.preventDefault()
-    const newPhonebookObject = {
-      name: newName,
-      phone: newPhone
-    }
-    const currentName = persons.find(persons => persons.name === newName)
-    if (currentName) {
-      (window.alert(`${newName} is already added to phonebook`))
-    }
-    setPersons(persons.concat(newPhonebookObject))
-    setNewName('')
-    newPhone(newPhone.concat(newPhonebookObject))
-    setNewPhone('')
-    return
-  }
-
-  const addPhone = (event) => {
-    event.preventDefault()
-    const phoneObject = {
-      phone: newPhone,
-    }
-    newPhone(newPhone.concat(phoneObject))
-    setNewPhone('')
-    return
-  }
-
-  return (
-    <div>
-      <h2>Phonebook</h2>
-      <Filter searchFilter={searchFilter} setSearchFilter={setSearchFilter} onChange={handleFilterChange} />
-      <h2>Add a new</h2>
-      <form onSubmit={addName}>
-        <div>
-          name: <input value={newName} onChange={handleNameChange}/>
-        </div>
-        <div>
-          number: <input value={newPhone} onChange={handlePhoneChange}/>
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
-      <h2>Numbers</h2>
-     <Persons persons={persons} phone={newPhone} addNewName={addName}/>
-    </div>
-  )
-}
-
-export default App
+  
+  export default Course
