@@ -622,9 +622,9 @@
 
 // 2.10
 import { useState } from 'react'
-import Persons from './components/Persons'
-import Filter from './components/Filter'
-import PersonForm from './components/PersonForm'
+import Persons from './Components/Persons'
+import Filter from './Components/Filter'
+import PersonForm from './Components/PersonForm'
 
 const App = () => {
   const [persons, setPersons] = useState([
