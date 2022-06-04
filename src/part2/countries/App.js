@@ -1,57 +1,129 @@
-import React, {useState, useEffect} from 'react'
+// // 1.12
+// import React, { useState, useEffect } from 'react'
+// import axios from 'axios'
+
+// const FilteredCountriesResult = ({searchFilteredCountries, setSearchFilter}) => {
+//   if (searchFilteredCountries.length === 1){
+//     const country = searchFilteredCountries[0]
+//     return (
+//       <div>
+//         <h1>{country.name.official}</h1>
+//         <div>capital {country.capital}</div>
+//         <div>population {country.population}</div>
+//         <div>area {country.area}</div>
+//         <div>region {country.region}</div>
+//         <div>subregion {country.subregion}</div>
+//         <h1>Languages</h1>
+//         <ul>
+//         { Object.values(country.languages).map(language => <li key={language}>{language}</li>) }
+//         </ul>
+//         <div> {country.flag}</div>
+//       </div>
+//     )
+//   }
+//   if (searchFilteredCountries.length > 10)
+//   return (
+//   <div>
+//     Too many matches, specify another filter
+//   </div>
+//   )
+//   return(
+//     searchFilteredCountries.map(country => <div key={country.name.official}>{country.name.official}</div>)
+//   )
+// }
+
+// const App = () => {
+//   const [ searchFilter, setSearchFilter ] = useState('')
+//   const [countries, setCountries] = useState([])
+
+//   const handleFilterChange = (event) => {
+//     console.log(event.target.value)
+//     setSearchFilter(event.target.value)
+//   }
+
+//   useEffect(() => {
+//     console.log('effect')
+//     axios.get('https://restcountries.com/v3.1/all').then(response => {
+//         console.log('promise fulfilled', response.data)
+//         setCountries(response.data)
+//       })
+//   }, [])
+
+//   const searchFilteredCountries = countries.filter(country => country.name.official.toLowerCase().includes(searchFilter))
+//   console.log(searchFilteredCountries)
+ 
+//   return (
+//     <div>
+//       find countries <input countries={countries} searchFilter={searchFilter} onChange={handleFilterChange} />
+//       <FilteredCountriesResult searchFilteredCountries={searchFilteredCountries} />
+//     </div>
+//   )
+ 
+// }
+
+// export default App
+
+// 1.13
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
-const App = () => {
-  const [countries, setCountries] = useState([])
-  const [search, setSearch] = useState('')
-
-  const Countries = (props) => {
-    if (countries.length > 10)
+const FilteredCountriesResult = ({searchFilteredCountries, setSearchFilter}) => {
+  if (searchFilteredCountries.length === 1){
+    const country = searchFilteredCountries[0]
     return (
-    <div>
-      Too many matches, specify another filter
-    </div>
-    )
-    return (
-      props.countries.map(countries => {
-        return(
-          <Countries countries={countries} />
-        )
-      })
-    )
-  }
-
-  const CountryInformation = ({countries}) => {
-    return(
       <div>
-        <h2>{countries.name}</h2>
-        <p>Capital: {countries.capital}</p>
-        <p>Population: {countries.population}</p>
-        <h3>Languages</h3>
-        <div>
-          {countries.languages.map(language => <li key={language.name}>{language.name}</li>)}
-        </div>
-        <img src={countries.flag} alt="country flag" width="300vw"/>
+        <h1>{country.name.official}</h1>
+        <div>capital {country.capital}</div>
+        <div>population {country.population}</div>
+        <div>area {country.area}</div>
+        <div>region {country.region}</div>
+        <div>subregion {country.subregion}</div>
+        <h1>Languages</h1>
+        <ul>
+        { Object.values(country.languages).map(language => <li key={language}>{language}</li>) }
+        </ul>
+        <div> {country.flag}</div>
       </div>
     )
+  }
+  if (searchFilteredCountries.length > 10)
+  return (
+  <div>
+    Too many matches, specify another filter
+  </div>
+  )
+  return(
+    searchFilteredCountries.map(country => <div key={country.name.official}>{country.name.official}</div>)
+  )
+}
+
+const App = () => {
+  const [ searchFilter, setSearchFilter ] = useState('')
+  const [countries, setCountries] = useState([])
+
+  const handleFilterChange = (event) => {
+    console.log(event.target.value)
+    setSearchFilter(event.target.value)
   }
 
   useEffect(() => {
     console.log('effect')
     axios.get('https://restcountries.com/v3.1/all').then(response => {
-        console.log('promise fulfilled')
+        console.log('promise fulfilled', response.data)
         setCountries(response.data)
       })
   }, [])
 
-  return(
-    // {(countries.length >=10) ? <div>Too many matches, specify another filter</div> :
-    // <Countries countries={countries} />}
+  const searchFilteredCountries = countries.filter(country => country.name.official.toLowerCase().includes(searchFilter))
+  console.log(searchFilteredCountries)
+ 
+  return (
     <div>
-      find countries <input value={search} onChange={e => setSearch(e.target.value)} /><br></br>
-      <Countries countries={countries}/><button>Show</button>
+      find countries <input countries={countries} searchFilter={searchFilter} onChange={handleFilterChange} />
+      <FilteredCountriesResult searchFilteredCountries={searchFilteredCountries} />
     </div>
   )
+ 
 }
 
 export default App
