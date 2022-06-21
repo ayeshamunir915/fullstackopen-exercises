@@ -253,16 +253,18 @@ const App = () => {
     const [selectedCountry, setSelectedCountry] = useState()
 
     const showCountry = (country) => {
-        console.log(country.name.official)
+      console.log(country)  
+      console.log(country[0])
         setSelectedCountry(country)
    };
 
     if (selectedCountry){
-      console.log(searchFilteredCountries)
+      console.log(selectedCountry)
       const country = searchFilteredCountries[0]
       return (
         <div>
           <h1>{country.name.official}</h1>
+          <div>capital {country.capital}</div>
           <div>area {country.area}</div>
           <h1>Languages</h1>
           <ul>
@@ -283,7 +285,7 @@ const App = () => {
       searchFilteredCountries.map(country => {
         return (
           <div key={country.name.official}>
-            {country.name.official}<button onClick={showCountry}>show</button>
+            {country.name.official}<button onClick={() => showCountry(country)}>show</button>
           </div>  
         )    
       }
