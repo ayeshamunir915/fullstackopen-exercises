@@ -244,7 +244,7 @@ const App = () => {
   useEffect(() => {
     // console.log('effect')
     axios.get('https://restcountries.com/v3.1/all').then(response => {
-        // console.log('promise fulfilled', response.data)
+        console.log('promise fulfilled', response.data)
         setCountries(response.data)
       })
   }, [])
@@ -255,12 +255,12 @@ const App = () => {
     const showCountry = (country) => {
       console.log(country)  
       console.log(country[0])
-        setSelectedCountry(country)
+      setSelectedCountry(country)
    };
 
     if (selectedCountry){
       console.log(selectedCountry)
-      const country = searchFilteredCountries[0]
+      const country = selectedCountry
       return (
         <div>
           <h1>{country.name.official}</h1>
